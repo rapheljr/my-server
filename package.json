@@ -11,5 +11,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "myserver-bodyparser": "github:nitinsharmacs/myserver-bodyparser"
+  }
 }
