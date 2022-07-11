@@ -1,5 +1,12 @@
 const bodyParser = require('myserver-bodyparser');
 
+const notFoundHandler = (req, res) => {
+  const { pathname } = req.url;
+  res.statusCode = 404;
+  res.end(pathname + ' not found');
+  return true;
+};
+
 const matches = function (method, path) {
   return this.method.toLowerCase() === method.toLowerCase()
     && this.url.pathname.toLowerCase() === path.toLowerCase();
@@ -19,6 +26,7 @@ const createNext = handlers => {
 
 const createRouter = (...handlers) => {
   handlers.unshift(bodyParser);
+  handlers.push(notFoundHandler);
   return (req, res) => {
     console.log(req.method, req.url);
     req.url = new URL(req.url, `http://${req.headers.host}`);
